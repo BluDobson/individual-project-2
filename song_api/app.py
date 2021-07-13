@@ -17,7 +17,15 @@ def get_song():
     Leotrix = ["brief grip of creation", "TRIP333", "Emoboy303", "Sight"]
     Artist = [Fox_Stevenson, Sol, Unlike_Pluto, Leotrix]
     data_sent = request.get_json()
-    song_id = countvowels(data_sent['random'])
+    if countvowels(data_sent['random']) == 0:
+        song_id = 0
+    elif countvowels(data_sent['random']) == 1:
+        song_id = 1
+    elif countvowels(data_sent['random']) == 2:
+        song_id = 2
+    else:
+        song_id = 3
+        
     if data_sent['artist'] == 'Fox Stevenson':
         return Artist[0][song_id]
     elif data_sent['artist'] == 'Sol':
