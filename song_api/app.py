@@ -1,4 +1,4 @@
-from flask import Flask, requests
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def get_song():
     Unlike_Pluto = ["Everything Black", "No Scrubs", "JOLT", "Worst in Me"]
     Leotrix = ["brief grip of creation", "TRIP333", "Emoboy303", "Sight"]
     Artist = [Fox_Stevenson, Sol, Unlike_Pluto, Leotrix]
-    data_sent = requests.get_json()
+    data_sent = request.get_json()
     song_id = data_sent['random']
     id_num = countvowels(song_id)
     if data_sent['artist'] == 'Fox Stevenson':
