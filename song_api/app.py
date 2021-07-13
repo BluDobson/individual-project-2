@@ -24,10 +24,8 @@ def get_song():
         return Artist[1][song_id]
     elif data_sent['artist'] == 'Unlike Pluto':
         return Artist[2][song_id]
-    elif data_sent['artist'] == 'Leotrix':
-        return Artist[3][song_id]
     else:
-        return 'error'
+        return Artist[3][song_id]
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

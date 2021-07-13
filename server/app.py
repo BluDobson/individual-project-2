@@ -17,7 +17,7 @@ class history(db.Model):
 def home():
     artist = requests.get('http://artist_api:5000/get_artist')
     random = requests.get('http://random_api:5000/get_random')
-    song = requests.post('http://song_api:5000/get_song', json={'artist':artist, 'random':random})
+    song = requests.post('http://song_api:5000/get_song', json={'artist':artist.text, 'random':random.text})
     last_five_songs = history.query.order_by(desc(history.id)).limit(5).all()
     db.session.add(history(artist=artist.text,song=song.text))
     db.session.commit()

@@ -10,6 +10,6 @@ class TestBase(TestCase):
 class TestHome(TestBase):
     def test_get_random(self):
             response = self.client.get(url_for('get_random'))
-            length = len(reponse.data.decode("utf-8"))
-            self.assertEqual(length,os.getenv('str_len'))
+            length = len(response.data.decode("utf-8"))
+            self.assertEqual(length,int(os.getenv('str_len')))
             
