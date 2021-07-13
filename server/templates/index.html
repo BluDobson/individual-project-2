@@ -1,0 +1,26 @@
+<html>
+    <header>
+        <title>
+            Song Suggestion
+        </title>
+    </header>
+    <body>
+        <h1>
+            A song suggestion for you!
+        </h1>
+        <p>
+            Listen to {{ song }} from {{ artist }}
+        </p>
+        <h2>
+            Previous Results
+        </h2>
+        <p>
+            {% for song in last_five_songs %}
+
+            {{ song }} by {{ artist }}
+            <br>
+
+            {% endfor %} 
+        </p>
+    </body>
+</html>
