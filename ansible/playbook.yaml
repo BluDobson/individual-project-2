@@ -1,0 +1,21 @@
+- hosts: managers
+  become: yes 
+  roles:
+  - docker
+  - manager
+
+- hosts: workers
+  become: yes 
+  roles:
+  - docker
+  - worker
+
+- hosts: nginx 
+  become: yes
+  roles:
+  - nginx
+
+- hosts: managers
+  become: yes 
+  roles:
+  - deploy

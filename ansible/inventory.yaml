@@ -1,0 +1,19 @@
+all:
+  vars:
+    ansible_ssh_provate_key_file: "~/.ssh/id_rsa"
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_user: bradl
+  hosts:
+    swarm-manager:
+    swarm-worker:
+    nginx:
+  children:
+    managers:
+      hosts:
+        swarm-manager:
+    workers:
+      hosts:
+        swarm-worker:
+    nginx:
+      hosts:
+        nginx:

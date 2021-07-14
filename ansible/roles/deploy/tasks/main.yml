@@ -1,0 +1,20 @@
+---
+- name: install jsondiff
+  pip:
+    name: jsondiff
+
+- name: install pyyaml
+  pip:
+    name: pyyaml
+
+- name: Copy compose file
+  template:
+    src: docker-compose.yml
+    dest: /opt/docker-compose.yml
+
+- name: Deploy stack from a compose file
+  docker_stack:
+    state: present
+    name: song-stack
+    compose:
+      - /opt/docker-compose.yml
