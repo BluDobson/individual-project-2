@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS history
              (
                           id INTEGER NOT NULL AUTO_INCREMENT,
                           artist VARCHAR (20) NOT NULL,
-                          song VARCHAR (20) NOT NULL
+                          song VARCHAR (50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `history` WRITE;

@@ -21,6 +21,8 @@ services:
     container_name: random_api
     image: bludobson/random_api
     build: ./random_api
+    environment:
+      str_len: ${str_len}
     deploy:
       replicas: 2
   song_api:

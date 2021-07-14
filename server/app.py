@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 class history(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     artist = db.Column(db.String(20), nullable=False)
-    song = db.Column(db.String(20), nullable=False)
+    song = db.Column(db.String(50), nullable=False)
 
 @app.route('/')
 def home():
