@@ -1,0 +1,14 @@
+---
+dependencies:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+  - python3
+  - python3-pip
+
+software:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
