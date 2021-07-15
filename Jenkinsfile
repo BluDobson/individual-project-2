@@ -7,18 +7,11 @@ pipeline{
         str_len = '4'
     }
     stages{
-        stage('Create Venv'){
-            steps{
-                script{
-                    sh 'python3 -m venv venv'
-                    sh '. ./venv/bin/activate'
-                    sh 'pip install -r requirements.txt'
-                }
-            }
-        }
         stage('Test Build'){
             steps{
+                    sh 'python -m venv venv'
                     sh '. ./venv/bin/activate'
+                    sh 'pip install -r requirements.txt'
                     sh 'pytest ./server --cov=app --cov-report html:s1'
                     sh 'pytest ./artist_api --cov=app --cov-report html:s2'
                     sh 'pytest ./random_api --cov=app --cov-report html:s3'
