@@ -47,10 +47,11 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                ansiblePlaybook colorized: true,
+                ansiblePlaybook(
+                colorized: true,
                 installation: 'ansible',
                 inventory: 'ansible/inventory.yaml'
-                playbook: 'ansible/playbook.yml'
+                playbook: 'ansible/playbook.yml')
             }
         }
     }
