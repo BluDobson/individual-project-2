@@ -26,9 +26,7 @@ pipeline{
                 script{
                     if (env.rollback == 'false'){
                         sh 'docker-compose build'
-                        image = docker.build("bludobson/song_server:${env.app_version}")
                         }
-                        
                     }
                 }
             }
@@ -36,8 +34,13 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                            image.push()
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'password', usernameVariable: 'username')]){
+                            sh 'echo "${password} | docker login -u ${username} --password-stdin'
+                            sh 'docker push bludobson/song_server:${env.app_version}'
+                            sh 'docker push bludobson/artist_api:${env.app_version}'
+                            sh 'docker push bludobson/random_api:${env.app_version}'
+                            sh 'docker push bludobson/song_api:${env.app_version}'
+                        }
                         }
                     }
                 }
