@@ -36,10 +36,10 @@ pipeline{
                     if (env.rollback == 'false'){
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'password', usernameVariable: 'username')]){
                             sh 'echo "${password} | docker login -u ${username} --password-stdin"'
-                            sh 'docker push bludobson/song_server:${env.app_version}'
-                            sh 'docker push bludobson/artist_api:${env.app_version}'
-                            sh 'docker push bludobson/random_api:${env.app_version}'
-                            sh 'docker push bludobson/song_api:${env.app_version}'
+                            sh 'docker push bludobson/song_server:${app_version}'
+                            sh 'docker push bludobson/artist_api:${app_version}'
+                            sh 'docker push bludobson/random_api:${app_version}'
+                            sh 'docker push bludobson/song_api:${app_version}'
                         }
                     }
                 }
