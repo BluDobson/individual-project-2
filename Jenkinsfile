@@ -9,6 +9,8 @@ pipeline{
     stages{
         stage('Test Build'){
             steps{
+                sh 'sudo apt update'
+                sh 'sudo apt install python3-venv python-pip'
                 sh 'python3 -m venv venv'
                 sh '. ./venv/bin/activate'
                 sh 'pip install -r requirements.txt'
