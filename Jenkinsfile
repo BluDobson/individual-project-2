@@ -12,10 +12,10 @@ pipeline{
                     sh 'python3 -m venv venv'
                     sh '. ./venv/bin/activate'
                     sh 'pip install -r requirements.txt'
-                    sh 'pytest ./server --cov=app --cov-report html:s1'
-                    sh 'pytest ./artist_api --cov=app --cov-report html:s2'
-                    sh 'pytest ./random_api --cov=app --cov-report html:s3'
-                    sh 'pytest ./song_api --cov=app --cov-report html:s4'
+                    sh 'py.test ./server --cov=app --cov-report html:s1'
+                    sh 'py.test ./artist_api --cov=app --cov-report html:s2'
+                    sh 'py.test ./random_api --cov=app --cov-report html:s3'
+                    sh 'py.test ./song_api --cov=app --cov-report html:s4'
                 }
             }
         stage('Build Images'){
