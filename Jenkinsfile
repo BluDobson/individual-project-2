@@ -25,31 +25,17 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        dir('server'){
-                            s1 = docker.build("bludobson/song_server")
-                        }
-                        dir('artist_api'){
-                            s2 = docker.build("bludobson/artist_api")
-                        }
-                        dir('random_api'){
-                            s3 = docker.build("bludobson/random_api")
-                        }
-                        dir('song_api'){
-                            s4 = docker.build("bludobson/song_api")
+                        sh 'docker-compose build'
                         }
                     }
                 }
             }
-        }
-        stage('Tag and push images'){
+        stage('Push images'){
             steps{
                 script{
                     if (env.rollback == 'false'){
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                            s1.push("${env.app_version}")
-                            s2.push("${env.app_version}")
-                            s3.push("${env.app_version}")
-                            s4.push("${env.app_version}")
+                            s1 = docker.image("bludobson/song_server")
                         }
                     }
                 }
