@@ -51,8 +51,6 @@ pipeline{
                 installation: 'ansible',
                 inventory: 'ansible/inventory.yaml'
                 playbook: 'ansible/playbook.yml'
-                sudo: true,
-                sudoUser: 'jenkins'
             }
         }
     }
