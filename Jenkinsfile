@@ -25,17 +25,20 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        sh 'docker-compose build'
+                        dir("server"){
+                            s1 = docker.build("bludobson/song_server")
                         }
+                        
                     }
                 }
             }
+        }
         stage('Push images'){
             steps{
                 script{
                     if (env.rollback == 'false'){
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                            s1 = docker.image("bludobson/song_server")
+                            s1.push("${env.app_version}")
                         }
                     }
                 }
