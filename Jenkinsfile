@@ -9,11 +9,13 @@ pipeline{
     stages{
         stage('Test Build'){
             steps{
-                sh 'pip install -r requirements.txt'
-                sh 'pytest ./server --cov=app --cov-report html:s1'
-                sh 'pytest ./artist_api --cov=app --cov-report html:s2'
-                sh 'pytest ./random_api --cov=app --cov-report html:s3'
-                sh 'pytest ./song_api --cov=app --cov-report html:s4'
+                withPythonEnv('testing'){
+                    sh 'pip install -r requirements.txt'
+                    sh 'pytest ./server --cov=app --cov-report html:s1'
+                    sh 'pytest ./artist_api --cov=app --cov-report html:s2'
+                    sh 'pytest ./random_api --cov=app --cov-report html:s3'
+                    sh 'pytest ./song_api --cov=app --cov-report html:s4'
+                }
             }
         }
         stage('Build Images'){
