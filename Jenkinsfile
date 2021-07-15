@@ -41,7 +41,9 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh 'ansible-playbook -i inventory.yaml playbook.yaml'
+                dir('ansible'){
+                    sh 'ansible-playbook -i inventory.yaml playbook.yaml'
+                }
             }
         }
     }
