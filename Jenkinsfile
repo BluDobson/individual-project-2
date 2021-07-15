@@ -35,7 +35,7 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        sh 'echo "${docker_password} | docker login -u bludobson --password-stdin"'
+                        sh 'docker login -u bludobson -p ${docker_password}'
                         sh 'docker system info | grep -E "Username|Registry"'
                         sh 'docker push bludobson/song_server:${app_version}'
                         sh 'docker push bludobson/artist_api:${app_version}'
