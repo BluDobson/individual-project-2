@@ -48,6 +48,10 @@ pipeline{
         stage('Deploy app'){
             steps{
                 dir('ansible'){
+                    sh 'mkdir -p ~/.local/bin'
+                    sh 'echo "PATH=$PATH:~/.local/bin" >> ~/.bashrc'
+                    sh 'source ~/.bashrc'
+                    sh 'pip3 install --user ansible'
                     sh 'ansible-playbook -i inventory.yaml playbook.yaml'
                 }
             }
