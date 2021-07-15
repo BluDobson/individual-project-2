@@ -2,7 +2,7 @@ all:
   vars:
     ansible_ssh_provate_key_file: "~/.ssh/id_rsa"
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-    ansible_user: bradl
+    ansible_user: jenkins
   hosts:
     swarm-manager:
     swarm-worker:
