@@ -35,10 +35,10 @@ pipeline{
                 script{
                     if (env.rollback == 'false'){
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                            s1.push("bludobson/song_server:${env.app_version}")
-                            s2.push("bludobson/artist_api:${env.app_version}")
-                            s3.push("bludobson/random_api:${env.app_version}")
-                            s4.push("bludobson/song_api:${env.app_version}")
+                            sh 'docker push bludobson/song_server:${env.app_version}'
+                            sh 'docker push bludobson/artist_api:${env.app_version}'
+                            sh 'docker push bludobson/random_api:${env.app_version}'
+                            sh 'docker push bludobson/song_api:${env.app_version}'
                         }
                     }
                 }
