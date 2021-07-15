@@ -26,7 +26,7 @@ pipeline{
                 script{
                     if (env.rollback == 'false'){
                         sh 'docker-compose build'
-                        image = docker.image("bludobson/song_server:${env.app_version}")
+                        image = docker.build("bludobson/song_server:${env.app_version}")
                         }
                         
                     }
