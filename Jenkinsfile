@@ -41,7 +41,6 @@ pipeline{
                             sh 'docker push bludobson/random_api:${env.app_version}'
                             sh 'docker push bludobson/song_api:${env.app_version}'
                         }
-                        }
                     }
                 }
             }
