@@ -13,10 +13,10 @@ pipeline{
                     sh 'python3 -m venv venv'
                     sh '. ./venv/bin/activate'
                     sh 'pip install -r requirements.txt'
-                    bat 'pytest ./server --cov=app --cov-report html:s1_html'
-                    bat 'pytest ./artist_api --cov=app --cov-report html:s2_html'
-                    bat 'pytest ./random_api --cov=app --cov-report html:s3_html'
-                    bat 'pytest ./song_api --cov=app --cov-report html:s4_html'
+                    sh 'pytest ./server --cov=app --cov-report html:s1_html'
+                    sh 'pytest ./artist_api --cov=app --cov-report html:s2_html'
+                    sh 'pytest ./random_api --cov=app --cov-report html:s3_html'
+                    sh 'pytest ./song_api --cov=app --cov-report html:s4_html'
                 }
             }
         }
