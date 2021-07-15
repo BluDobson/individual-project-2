@@ -47,11 +47,12 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh 'mkdir -p ~/.local/bin'
-                sh 'echo "PATH=$PATH:~/.local/bin" >> ~/.bashrc'
-                sh 'python3 -m pip install -U pip'
-                sh 'pip3 install --user ansible'
-                sh 'ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml'
+                ansiblePlaybook colorized: true,
+                installation: 'ansible',
+                inventory: 'ansible/inventory.yaml'
+                playbook: 'ansible/playbook.yml'
+                sudo: true,
+                sudoUser: 'jenkins'
             }
         }
     }
