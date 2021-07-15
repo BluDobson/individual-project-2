@@ -14,7 +14,7 @@ pipeline{
                     sh '. ./venv/bin/activate'
                     sh 'pip3 install -r requirements.txt'
                     sh 'pip3 freeze'
-                    sh 'pytest ./server --cov=app --cov-report html:s1_html'
+                    sh 'python3 -m pytest ./server --cov=app --cov-report html:s1_html'
                     sh 'pytest ./artist_api --cov=app --cov-report html:s2_html'
                     sh 'pytest ./random_api --cov=app --cov-report html:s3_html'
                     sh 'pytest ./song_api --cov=app --cov-report html:s4_html'
