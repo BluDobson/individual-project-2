@@ -9,8 +9,6 @@ pipeline{
     stages{
         stage('Test Build'){
             steps{
-                sh 'python3 -m venv venv'
-                sh '. ./venv/bin/activate'
                 sh 'pip install -r requirements.txt'
                 sh 'pytest ./server --cov=app --cov-report html:s1'
                 sh 'pytest ./artist_api --cov=app --cov-report html:s2'
