@@ -49,7 +49,7 @@ pipeline{
             steps{
                 dir('ansible'){
                     sh 'python3 -m pip install -U pip'
-                    sh 'python3 -m pip3 install --user ansible'
+                    sh 'python3 -m pip install --user ansible'
                     sh 'python3 -m ansible-playbook -i inventory.yaml playbook.yaml'
                 }
             }
