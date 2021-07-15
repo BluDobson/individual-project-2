@@ -9,6 +9,7 @@ pipeline{
     stages{
         stage('Test Build'){
             steps{
+                script{
                     sh 'python3 -m venv venv'
                     sh '. ./venv/bin/activate'
                     sh 'pip install -r requirements.txt'
@@ -18,6 +19,7 @@ pipeline{
                     sh 'pytest ./song_api --cov=app --cov-report html:s4'
                 }
             }
+        }
         stage('Build Images'){
             steps{
                 script{
