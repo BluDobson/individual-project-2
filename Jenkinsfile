@@ -47,10 +47,7 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                dir('ansible'){
-                    sh 'python3 -m pip install -U pip'
-                    sh 'python3 -m pip install --user ansible'
-                    sh 'ansible-playbook -i inventory.yaml playbook.yaml'
+                ansiblePlaybook(inventory: '~/ansible/inventory.yaml', playbook: '~/ansible/playbook.yaml')
                 }
             }
         }
