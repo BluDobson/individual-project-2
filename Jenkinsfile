@@ -35,7 +35,7 @@ pipeline{
                 script{
                     if (env.rollback == 'false'){
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'password', usernameVariable: 'username')]){
-                            sh 'echo "${password} | docker login -u ${username} --password-stdin'
+                            sh 'echo "${password} | docker login -u ${username} --password-stdin"'
                             sh 'docker push bludobson/song_server:${env.app_version}'
                             sh 'docker push bludobson/artist_api:${env.app_version}'
                             sh 'docker push bludobson/random_api:${env.app_version}'
