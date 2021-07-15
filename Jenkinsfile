@@ -12,7 +12,7 @@ pipeline{
                 script{
                     sh 'python3 -m venv venv'
                     sh '. ./venv/bin/activate'
-                    sh 'pip install -r requirements.txt'
+                    sh 'pip3 install -r requirements.txt'
                     sh 'pytest ./server --cov=app --cov-report html:s1_html'
                     sh 'pytest ./artist_api --cov=app --cov-report html:s2_html'
                     sh 'pytest ./random_api --cov=app --cov-report html:s3_html'
