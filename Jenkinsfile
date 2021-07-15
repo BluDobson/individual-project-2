@@ -48,7 +48,6 @@ pipeline{
         stage('Deploy app'){
             steps{
                 ansiblePlaybook(inventory: '~/ansible/inventory.yaml', playbook: '~/ansible/playbook.yaml')
-                }
             }
         }
     }
