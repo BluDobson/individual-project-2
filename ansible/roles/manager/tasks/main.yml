@@ -2,4 +2,4 @@
 - name: Make a new swarm
   community.docker.docker_swarm:
     state: present
-    register: swarm_info
+  register: swarm_info
