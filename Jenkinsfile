@@ -47,6 +47,8 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
+                sh 'python3 -m pip install -U pip'
+                sh 'pip3 install --user ansible'
                 ansiblePlaybook inventory: '/home/jenkins/.jenkins/workspace/test deploy/ansible/inventory.yaml', playbook: '/home/jenkins/.jenkins/workspace/test deploy/ansible/playbook.yaml'
             }
         }
