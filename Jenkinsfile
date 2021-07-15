@@ -47,7 +47,7 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh 'ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml'
+                sh 'ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml -u AUTO_USER --private-key=~/.ssh/id_rsa'
             }
         }
     }
