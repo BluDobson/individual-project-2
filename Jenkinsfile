@@ -4,6 +4,7 @@ pipeline{
         app_version = 'v1'
         rollback = 'false'
         DATABASE_URI = credentials('DATABASE_URI')
+        docker_password = credentials('docker_password')
         str_len = '4'
     }
     stages{
@@ -34,13 +35,11 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'password', usernameVariable: 'username')]){
-                            sh 'echo "${password} | docker login -u ${username} --password-stdin"'
-                            sh 'docker push bludobson/song_server:${app_version}'
-                            sh 'docker push bludobson/artist_api:${app_version}'
-                            sh 'docker push bludobson/random_api:${app_version}'
-                            sh 'docker push bludobson/song_api:${app_version}'
-                        }
+                        sh 'echo "${docker_password} | docker login -u bludobson --password-stdin"'
+                        sh 'docker push bludobson/song_server:${app_version}'
+                        sh 'docker push bludobson/artist_api:${app_version}'
+                        sh 'docker push bludobson/random_api:${app_version}'
+                        sh 'docker push bludobson/song_api:${app_version}'
                     }
                 }
             }
