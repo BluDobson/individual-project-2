@@ -25,8 +25,7 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        dir("/server"){
-                            s1 = docker.build("bludobson/song_server")
+                        sh 'docker-compose build'
                         }
                         
                     }
@@ -38,7 +37,10 @@ pipeline{
                 script{
                     if (env.rollback == 'false'){
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                            s1.push("${env.app_version}")
+                            sh 'docker push -a bludobson/song_server'
+                            sh 'docker push -a bludobson/artist_api'
+                            sh 'docker push -a bludobson/random_api'
+                            sh 'docker push -a bludobson/song_api'
                         }
                     }
                 }
