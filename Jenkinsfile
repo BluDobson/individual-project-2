@@ -47,7 +47,7 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                ansiblePlaybook(inventory: '~/ansible/inventory.yaml', playbook: '~/ansible/playbook.yaml')
+                ansiblePlaybook inventory: '/home/jenkins/.jenkins/workspace/test deploy/ansible/inventory.yaml', playbook: '/home/jenkins/.jenkins/workspace/test deploy/ansible/playbook.yaml'
             }
         }
     }
