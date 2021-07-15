@@ -25,7 +25,7 @@ pipeline{
             steps{
                 script{
                     if (env.rollback == 'false'){
-                        dir("./server"){
+                        dir("/server"){
                             s1 = docker.build("bludobson/song_server")
                         }
                         
