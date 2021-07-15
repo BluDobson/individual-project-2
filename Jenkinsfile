@@ -15,7 +15,6 @@ pipeline{
                     sh 'pytest ./song_api --cov=app --cov-report html:s4'
                 }
             }
-        }
         stage('Build Images'){
             steps{
                 script{
