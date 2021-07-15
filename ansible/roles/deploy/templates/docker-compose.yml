@@ -2,7 +2,7 @@ version: '3.8'
 services:
   server:
     container_name: song_server
-    image: bludobson/song_server
+    image: bludobson/song_server:'{{ lookup('env', 'app_version') }}'
     build: ./server
     ports:
     - target: 5000
@@ -13,13 +13,13 @@ services:
       replicas: 4
   artist_api:
     container_name: artist_api
-    image: bludobson/artist_api
+    image: bludobson/artist_api:'{{ lookup('env', 'app_version') }}'
     build: ./artist_api
     deploy:
       replicas: 2
   random_api:
     container_name: random_api
-    image: bludobson/random_api
+    image: bludobson/random_api:'{{ lookup('env', 'app_version') }}'
     build: ./random_api
     environment:
       str_len: '{{ lookup('env', 'str_len') }}'
@@ -27,7 +27,7 @@ services:
       replicas: 2
   song_api:
     container_name: song_api
-    image: bludobson/song_api
+    image: bludobson/song_api:'{{ lookup('env', 'app_version') }}'
     build: ./song_api
     deploy:
       replicas: 2
