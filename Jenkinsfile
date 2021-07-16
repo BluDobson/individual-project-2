@@ -48,7 +48,7 @@ pipeline{
         stage('Deploy app'){
             steps{
                 sh 'scp docker-compose.yaml bradl@swarm-manager:~/'
-                sh 'ssh bradl@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
+                sh 'ssh -o StrictHostKeyChecking-No bradl@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
         }
     }
