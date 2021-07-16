@@ -7,11 +7,12 @@ pipeline{
         docker_password = credentials('docker_password')
         str_len = '4'
     }
+    
     def remote = [:]
-        remote.name = 'manager'
-        remote.host = 'swarm-manager'
-        remote.user = 'bradl'
-        remote.allowAnyHosts = true
+    remote.name = 'manager'
+    remote.host = 'swarm-manager'
+    remote.user = 'bradl'
+    remote.allowAnyHosts = true
     stages{
         stage('Test Build'){
             steps{
