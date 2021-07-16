@@ -6,6 +6,7 @@
     * [Risk Assessment](#Risk-Assessment)
     * [Trello Board](#Trello-Board)
     * [Application Diagram](#Application-Diagram)
+    * [CI Pipeline](#CI-pipeline)
 * [Development](#Development)
 * [Review](#Review)
 
@@ -53,7 +54,14 @@ I decided to create an application diagram, to show how the different services w
 
 ![app-diagram](./images/App-Diagram.png)
 
+---
 ### __CI pipeline__
 Finally, I created a diagram to show the CI pipeline I plan to create with the application.
 
 ![CI-pipeline](./images/CI-pipeline.png)
+
+---
+## __Development__
+
+---
+## __Review__
