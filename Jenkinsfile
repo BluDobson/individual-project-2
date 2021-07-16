@@ -45,16 +45,10 @@ pipeline{
                 }
             }
         }
-        def remote = [:]
-        remote.name = 'manager'
-        remote.host = 'swarm-manager'
-        remote.user = 'bradl'
-        remote.allowAnyHosts = true
         stage('Deploy app'){
             steps{
-                sshPut remote: manager, from: 'docker-compose.yaml', into: '.'
-                sshCommand remote: manager, command: 'export DATABASE_URI=${DATABASE_URI} app_version=${app_version}'
-                sshCommand remote: manager, command: 'docker stack deploy --compose-file docker-compose.yaml song-stack' 
+                sh 'scp docker-compose.yaml bradl@34.142.125.255:~/'
+                sh 'ssh bradl@34.142.125.255 "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
         }
     }
