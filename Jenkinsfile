@@ -10,6 +10,18 @@ pipeline{
         str_len = '4'
     }
     stages{
+        stage('Checkout SCM') {
+            steps{
+                checkout ([
+                    $class: 'GitSCM',
+                    branches: [[name: 'dev']],
+                    userRemoteConfigs: [[
+                        url: 'git@github.com/BluDobson/individual-project-2.git'
+                        credentialsID: '',
+                    ]]
+                ])
+            }
+        }
         stage('Test Build'){
             steps{
                 script{
