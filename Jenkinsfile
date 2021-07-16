@@ -19,7 +19,10 @@ pipeline{
                     sh 'python3 -m pytest ./artist_api --cov=app --cov-report html:s2_html'
                     sh 'python3 -m pytest ./random_api --cov=app --cov-report html:s3_html'
                     sh 'python3 -m pytest ./song_api --cov=app --cov-report html:s4_html'
-                    archiveArtifacts 's1_html/index.html' 's2_html/index.html' 's3_html/index.html' 's4_html/index.html'
+                    archiveArtifacts 's1_html/index.html' 
+                    archiveArtifacts 's2_html/index.html' 
+                    archiveArtifacts 's3_html/index.html' 
+                    archiveArtifacts 's4_html/index.html'
                 }
             }
         }
