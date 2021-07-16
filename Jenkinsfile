@@ -47,8 +47,9 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager'
                 sh 'scp docker-compose.yaml jenkins@swarm-manager:~/'
-                sh 'ssh -o StrictHostKeyChecking-No jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
         }
     }
