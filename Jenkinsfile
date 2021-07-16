@@ -27,23 +27,19 @@ pipeline{
         stage('Build Images'){
             steps{
                 script{
-                    if (env.rollback == 'false'){
-                        sh 'docker-compose build'
-                        }
+                    sh 'docker-compose build'
                     }
                 }
             }
         stage('Push images'){
             steps{
                 script{
-                    if (env.rollback == 'false'){
-                        sh 'docker login -u bludobson -p ${docker_password}'
-                        sh 'docker system info | grep -E "Username|Registry"'
-                        sh 'docker push bludobson/song_server:latest'
-                        sh 'docker push bludobson/artist_api:latest'
-                        sh 'docker push bludobson/random_api:latest'
-                        sh 'docker push bludobson/song_api:latest'
-                    }
+                    sh 'docker login -u bludobson -p ${docker_password}'
+                    sh 'docker system info | grep -E "Username|Registry"'
+                    sh 'docker push bludobson/song_server:latest'
+                    sh 'docker push bludobson/artist_api:latest'
+                    sh 'docker push bludobson/random_api:latest'
+                    sh 'docker push bludobson/song_api:latest'
                 }
             }
         }
