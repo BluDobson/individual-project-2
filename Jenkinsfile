@@ -19,7 +19,7 @@ pipeline{
                     sh 'python3 -m pytest ./artist_api --cov=app --cov-report html:s2_html'
                     sh 'python3 -m pytest ./random_api --cov=app --cov-report html:s3_html'
                     sh 'python3 -m pytest ./song_api --cov=app --cov-report html:s4_html'
-                    archiveArtifacts 's1_html/index.html' 
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's1_html', reportFiles: 'index.html', reportName: 'Server Coverage', reportTitles: ''])
                     archiveArtifacts 's2_html/index.html' 
                     archiveArtifacts 's3_html/index.html' 
                     archiveArtifacts 's4_html/index.html'
