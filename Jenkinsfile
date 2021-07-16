@@ -8,6 +8,11 @@ pipeline{
         str_len = '4'
     }
     stages{
+        stage('Create docker-compose.yaml'){
+            steps{
+                sh './docker-compose.sh'
+            }
+        }
         stage('Test Build'){
             steps{
                 script{
@@ -51,9 +56,8 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh './docker-compose.sh'
                 sh 'scp docker-compose1.yaml jenkins@swarm-manager:~/'
-                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose1.yaml song-stack"'
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
         }
     }

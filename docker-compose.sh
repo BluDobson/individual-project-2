@@ -3,7 +3,7 @@ echo "version: '3.8'
 services:
   server:
     container_name: song_server
-    image: bludobson/song_server:v1
+    image: bludobson/song_server:${app_version}
     build: ./server
     ports:
     - target: 5000
@@ -14,13 +14,13 @@ services:
       replicas: 4
   artist_api:
     container_name: artist_api
-    image: bludobson/artist_api:v1
+    image: bludobson/artist_api:${app_version}
     build: ./artist_api
     deploy:
       replicas: 2
   random_api:
     container_name: random_api
-    image: bludobson/random_api:v1
+    image: bludobson/random_api:${app_version}
     build: ./random_api
     environment:
       str_len: 4
@@ -28,7 +28,7 @@ services:
       replicas: 2
   song_api:
     container_name: song_api
-    image: bludobson/song_api:v1
+    image: bludobson/song_api:${app_version}
     build: ./song_api
     deploy:
-      replicas: 2" > docker-compose1.yaml
+      replicas: 2" > docker-compose.yaml
