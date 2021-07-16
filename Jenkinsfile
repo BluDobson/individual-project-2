@@ -7,6 +7,11 @@ pipeline{
         docker_password = credentials('docker_password')
         str_len = '4'
     }
+    def remote = [:]
+        remote.name = 'manager'
+        remote.host = 'swarm-manager'
+        remote.user = 'bradl'
+        remote.allowAnyHosts = true
     stages{
         stage('Test Build'){
             steps{
@@ -47,7 +52,9 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh 'ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml -u AUTO_USER --private-key=~/.ssh/id_rsa'
+                sshPut remote: manager, from: 'docker-compose.yaml', into: '.'
+                sshCommand remote: manager, command: 'export DATABASE_URI=${DATABASE_URI} app_version=${app_version}'
+                sshCommand remote: manager, command: 'docker stack deploy --compose-file docker-compose.yaml song-stack'
             }
         }
     }
