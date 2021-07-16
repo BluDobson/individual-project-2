@@ -20,9 +20,9 @@ pipeline{
                     sh 'python3 -m pytest ./random_api --cov=app --cov-report html:s3_html'
                     sh 'python3 -m pytest ./song_api --cov=app --cov-report html:s4_html'
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's1_html', reportFiles: 'index.html', reportName: 'Server Coverage', reportTitles: ''])
-                    archiveArtifacts 's2_html/index.html' 
-                    archiveArtifacts 's3_html/index.html' 
-                    archiveArtifacts 's4_html/index.html'
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's2_html', reportFiles: 'index.html', reportName: 'Artist_Api Coverage', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's3_html', reportFiles: 'index.html', reportName: 'Random_Api Coverage', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's4_html', reportFiles: 'index.html', reportName: 'Song_Api Coverage', reportTitles: ''])
                 }
             }
         }
