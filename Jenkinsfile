@@ -51,9 +51,6 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                sh 'touch duri.txt'
-                sh 'echo ${DATABASE_URI} > duri.txt'
-                sh 'scp duri.txt jenkins@swarm-manager:~/'
                 sh 'scp docker-compose.yaml jenkins@swarm-manager:~/'
                 sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
