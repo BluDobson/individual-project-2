@@ -1,5 +1,4 @@
-#!/bin/bash
-echo "version: '3.8'
+version: '3.8'
 services:
   server:
     container_name: song_server
@@ -31,4 +30,4 @@ services:
     image: bludobson/song_api:latest
     build: ./song_api
     deploy:
-      replicas: 2" > docker-compose1.yaml
+      replicas: 2

@@ -1,18 +1,11 @@
 pipeline{
     agent any
     environment {
-        app_version = 'v1'
-        rollback = 'false'
         DATABASE_URI = credentials('DATABASE_URI')
         docker_password = credentials('docker_password')
         str_len = '4'
     }
     stages{
-        stage('Create docker-compose.yaml'){
-            steps{
-                sh './docker-compose.sh'
-            }
-        }
         stage('Test Build'){
             steps{
                 script{
@@ -46,18 +39,19 @@ pipeline{
                     if (env.rollback == 'false'){
                         sh 'docker login -u bludobson -p ${docker_password}'
                         sh 'docker system info | grep -E "Username|Registry"'
-                        sh 'docker push bludobson/song_server:${app_version}'
-                        sh 'docker push bludobson/artist_api:${app_version}'
-                        sh 'docker push bludobson/random_api:${app_version}'
-                        sh 'docker push bludobson/song_api:${app_version}'
+                        sh 'docker push bludobson/song_server:latest'
+                        sh 'docker push bludobson/artist_api:latest'
+                        sh 'docker push bludobson/random_api:latest'
+                        sh 'docker push bludobson/song_api:latest'
                     }
                 }
             }
         }
         stage('Deploy app'){
             steps{
+                sh './docker-compose.sh'
                 sh 'scp docker-compose1.yaml jenkins@swarm-manager:~/'
-                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose1.yaml song-stack"'
             }
         }
     }
