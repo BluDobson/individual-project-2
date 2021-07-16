@@ -45,18 +45,16 @@ pipeline{
                 }
             }
         }
-        node {
-            def remote = [:]
-            remote.name = 'manager'
-            remote.host = 'swarm-manager'
-            remote.user = 'bradl'
-            remote.allowAnyHosts = true
-            stage('Deploy app'){
-                steps{
-                    sshPut remote: manager, from: 'docker-compose.yaml', into: '.'
-                    sshCommand remote: manager, command: 'export DATABASE_URI=${DATABASE_URI} app_version=${app_version}'
-                    sshCommand remote: manager, command: 'docker stack deploy --compose-file docker-compose.yaml song-stack' 
-                }
+        def remote = [:]
+        remote.name = 'manager'
+        remote.host = 'swarm-manager'
+        remote.user = 'bradl'
+        remote.allowAnyHosts = true
+        stage('Deploy app'){
+            steps{
+                sshPut remote: manager, from: 'docker-compose.yaml', into: '.'
+                sshCommand remote: manager, command: 'export DATABASE_URI=${DATABASE_URI} app_version=${app_version}'
+                sshCommand remote: manager, command: 'docker stack deploy --compose-file docker-compose.yaml song-stack' 
             }
         }
     }
