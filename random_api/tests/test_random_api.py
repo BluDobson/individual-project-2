@@ -11,5 +11,5 @@ class TestHome(TestBase):
     def test_get_random(self):
             response = self.client.get(url_for('get_random'))
             length = len(response.data.decode("utf-8"))
-            self.assertEqual(length,int(os.getenv('str_len')))
+            self.assertEqual(length,int(os.getenv('str_len'))*2)
             
