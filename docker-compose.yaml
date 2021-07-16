@@ -22,7 +22,7 @@ services:
     image: bludobson/random_api:v1
     build: ./random_api
     environment:
-      str_len: ${str_len}
+      str_len: 4
     deploy:
       replicas: 2
   song_api:
