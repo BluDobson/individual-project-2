@@ -51,10 +51,9 @@ pipeline{
         }
         stage('Deploy app'){
             steps{
-                withCredentials([string(credentialsId: 'DATABASE_URI', variable: 'DATABASE_URI')]){
-                    sh 'scp docker-compose.yaml jenkins@swarm-manager:~/'
-                    sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
-                }
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "export DATABASE_URI=${DATABASE_URI}"'
+                sh 'scp docker-compose.yaml jenkins@swarm-manager:~/'
+                sh 'ssh -o StrictHostKeyChecking=no jenkins@swarm-manager "docker stack deploy --compose-file docker-compose.yaml song-stack"'
             }
         }
     }
