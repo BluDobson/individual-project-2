@@ -62,13 +62,6 @@ Finally, I created a diagram to show the CI pipeline I plan to create with the a
 
 ---
 ## __Development__
-### __Front End__
-
-The application has a simple front-end that displays the generated song when the page is loaded, as well as the previous five results.
-
-![Front-End](./images/Front-End.png)
-
----
 ### __Test Analysis__
 I wrote testing for the application to cover each API that is used, and the server that the user will access. 
 

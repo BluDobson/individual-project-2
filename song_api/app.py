@@ -25,7 +25,6 @@ def get_song():
         song_id = 2
     else:
         song_id = 3
-        
     if data_sent['artist'] == 'Rogue':
         return Artist[0][song_id]
     elif data_sent['artist'] == 'Conro':

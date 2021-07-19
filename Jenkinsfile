@@ -23,7 +23,7 @@ pipeline{
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 's4_html', reportFiles: 'index.html', reportName: 'Song_Api Coverage', reportTitles: ''])
                 }
             }
-        }
+        } 
         stage('Build Images'){
             steps{
                 script{
