@@ -8,7 +8,7 @@ class TestBase(TestCase):
 
 class TestHome(TestBase):
     def test_get_song(self):
-        test_cases = [("Fox Stevenson","ctin", "Go Like"),("Leotrix","uooi", "Sight"),("Sol","baan", "I'll Never Change")]
+        test_cases = [("Rogue","ctin", "Fortress"),("Conro","uooi", "All Eyes On Me"),("Grant","baan", "Move On")]
         for case in test_cases:
             response = self.client.post(url_for('get_song'), json={'artist':case[0], 'random':case[1]})
             self.assertEqual(response.data.decode("utf-8"),case[2])

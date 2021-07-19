@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/get_random', methods=['GET'])
 def get_random():
     letters = string.ascii_lowercase
-    result_str = ''.join(random.choice(letters) for i in range(int(os.getenv('str_len'))))
+    result_str = ''.join(random.choice(letters) for i in range(int(os.getenv('str_len'))*2))
     return result_str
 
 if __name__ == "__main__":
